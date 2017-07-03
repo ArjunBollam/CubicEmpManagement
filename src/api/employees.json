@@ -1,0 +1,29 @@
+[
+           {
+          "Name":"Narottam",
+          "Email": "Norottam@gmail.com",
+          "PhoneNumber" : 9999999999,
+          "Status": "OPT",
+          "Grade": 3,
+          "Salary": 5000,
+          "imageUrl": "../../assets/Emp1.png"
+        },
+        {
+          "Name": "Bikash",
+          "Email": "Bikash@gmail.com",
+         "PhoneNumber" : 9999999999,
+          "Status": "GC",
+          "Grade": 4.5,
+          "Salary": 6000,
+          "imageUrl": "../../assets/Emp2.jpg"
+        },
+        {
+          "Name": "Temesgen",
+          "Email": "Temesgen@gmail.com",
+          "PhoneNumber" : 9999999999,
+          "Status": "GC",
+          "Grade": 3,
+          "Salary": 7000,
+          "imageUrl": "../../assets/Emp3.jpg"
+        }
+       ]
