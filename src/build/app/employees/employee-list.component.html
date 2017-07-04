@@ -1,0 +1,120 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{pageTitle}}
+    </div>
+
+    <!-- Filter Employees -->
+    <div class="panel-body">
+        <div class="row">
+         <div class="col-md-2">Filter by:</div>
+         <div class="col-md-4">
+             <input type='text' 
+             [(ngModel)] = 'listFilter'  />
+        </div>
+        </div>
+        <div class="row" *ngIf="listFilter" >
+        <div class="col-md-6">
+           <h3> Filtered By : {{listFilter}}</h3>
+           </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered" *ngIf='employees && employees.length'>
+            <tr>
+                <th>
+                    <button class="btn btn-primary"
+                    (click) = 'toggleImage()'>
+                   {{ShowImage ? 'Hide':'Show'}} Image
+                    </button>
+                </th>
+                <th> Name </th>
+                <th> Email </th>
+                <th> PhoneNumber</th>
+                <th> Status </th>
+                <th> Grade</th>
+                <th> Salary </th>
+
+            </tr>
+
+            <tr *ngFor="let employee of employees | employeeFilter : listFilter ">
+                <td>
+                    <img *ngIf='ShowImage' [src] = 'employee.imageUrl'
+                         [title] = 'employee.Name'
+                         [style.width.px] = 'imageWidth'
+                         [style.margin.px] = 'imageMargin' />
+                </td>
+                <td> <a [routerLink]="[employee.ID]">
+                {{employee.Name}}
+                </a>
+                </td>
+                <td>{{employee.Email | lowercase}}</td>
+                <td>{{employee.PhoneNumber }}</td>
+                <td>{{employee.Status }}</td>
+                <td>
+                    <app-star [rating]='employee.Grade'
+                              (gradingClicked)='onGradingClicked($event)'>
+                       </app-star>
+                </td>
+                <td> {{employee.Salary |currency:'USD':true:'1.2-2'}} </td>
+
+            </tr>
+        </table>
+    </div>
+
+    <div class="panel panel-footer">
+        <div class="row">
+            <button class="btn btn-default" (click)="isAdd = !isAdd">Add Employee</button> <br><br>
+    <!-- <input type="text" [(ngModel)]="curuser.name" (keydown.Enter) = "addUser()" /> -->
+    <div *ngIf="isAdd">
+        
+            <table>
+                <tr>
+                    <td><b>Name :</b></td>
+                    <td><input type="text" [(ngModel)]="currentEmployee.Name" placeholder="Name" required class="form-control" /> </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td> <b>Email : </b></td>
+                    <td><input type="text" [(ngModel)]="currentEmployee.Email" placeholder="Email" class="form-control" /> </td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><b>PhoneNumber: </b></td>
+                    <td><input type="text" [(ngModel)]="currentEmployee.PhoneNumber" placeholder="PhoneNumber" class="form-control" />                        </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td> <b>Status : </b></td>
+                    <td><input type="text" [(ngModel)]="currentEmployee.Status" required placeholder="Status" class="form-control" />                        </td>
+                </tr>
+                <tr>
+
+                </tr>
+                <tr>
+                    <td><b>Grade: </b></td>
+                    <td><input type="text" [(ngModel)]="currentEmployee.Grade" required placeholder="Grade" class="form-control" /> </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td> <b>Salary : </b></td>
+                    <td><input type="text" [(ngModel)]="currentEmployee.Salary" required placeholder="Salary" class="form-control" />                        </td>
+                </tr>
+                <tr>
+
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td><button class="btn btn-primary" (click) = "addEmployee()">Save</button></td>
+                    <td></td>
+                    <td></td>
+                    <td><button class="btn btn-danger" (click)="isAdd = !isAdd">Cancel</button></td>
+                </tr>
+            </table>
+        
+    </div>
+        </div>
+    </div>
+</div>

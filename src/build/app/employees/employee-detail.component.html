@@ -1,0 +1,45 @@
+<div class="panel panel-primary" *ngIf="employee">
+    <div class="panel-heading" style="font-size:large">
+        {{pageTitle + ": " + employee.Name}}
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-3">Name:</div>
+                    <div class="col-md-6">{{employee.Name}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Email:</div>
+                    <div class="col-md-6">{{employee.Email}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">PhoneNumber:</div>
+                    <div class="col-md-6">{{employee.PhoneNumber}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Status:</div>
+                    <div class="col-md-6">{{employee.Status}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Grade:</div>
+                    <app-star [rating]='employee.Grade'>Loading...</app-star>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Salary:</div>
+                    <div class="col-md-6">{{employee.Salary}}</div>
+                </div>
+            </div>
+            <div class="col-md-6" *ngIf="employee.imageUrl">
+                <img class="center-block img-responsive" [style.width.px]="200" [style.margin.px]="2" [src]='employee.imageUrl' [title]='employee.Name'>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <a class="btn btn-default"
+            [routerLink]="['/employees']"
+            queryParamsHandling = "preserve">
+            <i class="glyphicon glyphicon-chevron-left"></i> Back
+            </a>
+    </div>
+</div>
